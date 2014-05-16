@@ -2,6 +2,9 @@ package de.dreamlab.dash;
 
 
 import com.intellij.lang.Language;
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
@@ -14,6 +17,8 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 
 public class DashLauncherAction extends AnAction {
+    public static final Boolean VERBOSE_DEBUG = true;
+
     private static final String XML_LANGUAGE_ID = "XML";
 
     private KeywordLookup keywordLookup;
@@ -21,6 +26,10 @@ public class DashLauncherAction extends AnAction {
 
     public DashLauncherAction()
     {
+        if ( DashLauncherAction.VERBOSE_DEBUG ) {
+            Notifications.Bus.notify(new Notification("Dash", "Dash: Verbose Debug", "Plugin initialized", NotificationType.INFORMATION));
+        }
+
         keywordLookup = new KeywordLookup();
         dashLauncher = new DashLauncher();
     }

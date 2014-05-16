@@ -46,6 +46,10 @@ public class DashLauncher {
             // query
             request += "query=" + urlEncode(query);
 
+            if ( DashLauncherAction.VERBOSE_DEBUG ) {
+                Notifications.Bus.notify(new Notification("Dash", "Dash: Verbose Debug", "openUri: " + request, NotificationType.INFORMATION));
+            }
+
             openUri(request);
         }
         catch ( UnsupportedEncodingException e ) {
